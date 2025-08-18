@@ -10,6 +10,7 @@ export default function Contact() {
       className="font-roboto"
     >
       <h1>Contact</h1>
+      <h2>Contact product store</h2>
     </motion.div>
   );
 }
