@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@200..700&display=swap');
+@import "tailwindcss";
+@plugin "daisyui";
+@plugin "daisyui" {
+  themes: acid --default, dracula --prefersdark, dracula --dark;
+}
+@theme {
+  --breakpoint-ss: 23.75rem;
+  --breakpoint-ls: 35rem;
+  --breakpoint-ssm: 42rem;
+  --breakpoint-slg: 55rem;
+
+  --breakpoint-2xl: 100rem;
+  --breakpoint-3xl: 120rem;
+}
+.font-roboto{
+    font-family: "Mozilla Text", sans-serif;
+
+}
+/* 
+/* Light Theme */
+/* @plugin "daisyui/theme" {
+  name: "mytheme";
+  default: false;
+  prefersdark: false;
+  color-scheme: light;
+  --color-base-100: oklch(98% 0.038 338);
+  --color-base-200: oklch(96% 0.052 328);
+  --color-base-300: oklch(94% 0.052 328);
+  --color-base-content: oklch(10% 0.049 315);
+  --color-primary: oklch(40% 0.351 315);
+  --color-primary-content: oklch(100% 0 158);
+  --color-secondary: oklch(40% 0.142 317);
+  --color-secondary-content: oklch(100% 0 158);
+  --color-accent: oklch(40% 0.216 20);
+  --color-accent-content: oklch(100% 0 158);
+  --color-neutral: oklch(30% 0.065 319);
+  --color-neutral-content: oklch(90% 0.219 317);
+  --color-info: oklch(40% 0.351 315);
+  --color-info-content: oklch(100% 0 158);
+  --color-success: oklch(40% 0.142 317);
+  --color-success-content: oklch(100% 0 158);
+  --color-warning: oklch(40% 0.216 20);
+  --color-warning-content: oklch(100% 0 158);
+  --color-error: oklch(40% 0.74 36);
+  --color-error-content: oklch(100% 0 158);
+}
+
+/* Dark Theme */
+/* @plugin "daisyui/theme" {
+  name: "mydarktheme";
+  default: false;
+  prefersdark: true;
+  color-scheme: dark;
+  --color-base-100: rgb(22 18 23);
+  --color-base-200: rgb(34 30 36);
+  --color-base-300: rgb(56 51 57);
+  --color-base-content: rgb(233 224 231);
+  --color-primary: rgb(225 184 245);
+  --color-primary-content: rgb(66 34 85);
+  --color-secondary: rgb(211 192 216);
+  --color-secondary-content: rgb(56 44 62);
+  --color-accent: rgb(244 183 184);
+  --color-accent-content: rgb(76 37 39);
+  --color-neutral: rgb(75 68 77);
+  --color-neutral-content: rgb(206 195 206);
+  --color-info: rgb(225 184 245);
+  --color-info-content: rgb(66 34 85);
+  --color-success: rgb(211 192 216);
+  --color-success-content: rgb(56 44 62);
+  --color-warning: rgb(244 183 184);
+  --color-warning-content: rgb(76 37 39);
+  --color-error: rgb(255 180 171);
+  --color-error-content: rgb(105 0 5);
+} */
