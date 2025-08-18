@@ -7,9 +7,10 @@ export default function About() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 1.3 }}
-      className="font-roboto"
+      className="font-roboto h-screen"
     >
       <h1>About</h1>
+      <h2>about product store</h2>
     </motion.div>
   );
 }
