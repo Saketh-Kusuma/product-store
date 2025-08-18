@@ -1,0 +1,19 @@
+import type { CategoryProducts } from "@/types/CategoryProducts";
+import { createApi,fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+export const categoryApi = createApi({
+  reducerPath: "categoryApi",
+  baseQuery: fetchBaseQuery({ baseUrl: "https://dummyjson.com/products" }),
+  endpoints: (builder) => ({
+    getCategory: builder.query<string[], string>({
+      query: () => "/category-list",
+    }),
+    getProductsByCategory: builder.query<CategoryProducts, string | undefined>({
+      query: (categoryName) => `/category/${categoryName}`,
+    }),
+    getProducts: builder.query<CategoryProducts, string|undefined>({
+      query:()=>`/`,
+    })
+  }),
+});
+export const { useGetCategoryQuery, useGetProductsByCategoryQuery, useGetProductsQuery } =
+  categoryApi;
