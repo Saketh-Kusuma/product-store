@@ -8,7 +8,6 @@ import { Store01FreeIcons } from "@hugeicons/core-free-icons";
 
 export default function SignUp() {
   const [error, setError] = useState("");
-  const [submitError, setSubmitError] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmMessage, setConfirmMessage] = useState("");
@@ -38,11 +37,10 @@ export default function SignUp() {
   async function HandleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     // Reset previous errors
-    setSubmitError("");
     setConfirmMessage("");
 
     if (password !== confirmPassword) {
-      setSubmitError("Passwords do not match");
+      setConfirmMessage("Passwords do not match");
       return;
     }
 
@@ -58,7 +56,7 @@ export default function SignUp() {
         },
       });
       if (error) {
-        setSubmitError(error.message);
+        setConfirmMessage(error.message);
         setIsSuccess(false);
         return;
       }
@@ -78,7 +76,7 @@ export default function SignUp() {
       }
     } catch (err) {
       console.error("Unexpected error during signup:", err);
-      setSubmitError("An unexpected error occurred");
+      setConfirmMessage("An unexpected error occurred");
       setIsSuccess(false);
     } finally {
       setIsLoading(false);

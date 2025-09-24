@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import type { Products } from "@/types/Products";
 
 export default function Card({ product }: { product: Products }) {

@@ -3,7 +3,6 @@ import { useState } from "react";
 import Sign from "../assets/undraw_enter-password_1kl4.svg";
 import { Link } from "react-router-dom";
 import { supabase } from "@/supabase-client";
-import { SupabaseAuthClient } from "@supabase/supabase-js/dist/module/lib/SupabaseAuthClient";
 export default function SignIn() {
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");

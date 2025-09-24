@@ -13,10 +13,9 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { supabase } from "@/supabase-client";
 export default function Header() {
-  const { data, isLoading, isError, isSuccess, error } =
+  const { data, isLoading, isError, isSuccess } =
     useGetCategoryQuery("getCategory");
   const [cartNumber, setCartNumber] = useState(0);
-  const [userId, setUserId] = useState("");
 
   const [useDetails, setUserDetails] = useState({
     email: "",
@@ -28,7 +27,7 @@ export default function Header() {
     });
   }
 
-  async function getCartNumber(id) {
+  async function getCartNumber(id: string) {
     if (!id) return;
 
     await supabase
@@ -52,7 +51,6 @@ export default function Header() {
 
     supabase.auth.getUser().then((res) => {
       const id = res.data.user?.id || "";
-      setUserId(id);
 
       // Only call getCartNumber if we have a valid user ID
       if (id) {

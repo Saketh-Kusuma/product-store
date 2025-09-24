@@ -18,34 +18,21 @@ import {
 import { HugeiconsIcon } from "@hugeicons/react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import MiniCard from "./Mini-Card";
-import { useParams } from "react-router-dom";
-import { supabase } from "@/supabase-client";
 export default function ProductDetails() {
   const params = useParams();
   const { data } = useGetProductsByIdQuery(params?.id);
-  const [noOfImg, setNoOfImg] = useState(0);
   const [imgSrc, setImgSrc] = useState("");
   const { data: RelatedData } = useGetProductsByCategoryQuery(data?.category);
   const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
-  const [userId, setUserId] = useState("");
 
   useEffect(() => {
-    setNoOfImg(data?.images.length || 0);
     if (!api) {
       return;
     }
-    supabase.auth.getUser().then((res) => {
-      setUserId(res.data.user?.id || "");
-    });
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap() + 1);
 
     api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1);
     });
   }, [api]);
   function HandleCartAdd() {
