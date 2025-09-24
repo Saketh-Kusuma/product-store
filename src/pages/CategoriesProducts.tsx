@@ -4,13 +4,9 @@ import { motion } from "framer-motion";
 import Card from "@/component/Card";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Store01FreeIcons } from "@hugeicons/core-free-icons";
-import { useEffect, useState } from "react";
-interface CategoryName {
-  categoryName: string;
-}
 export default function CategoriesProducts() {
-  const params = useParams<{ categoryName: string }>();
-  const { data, isError, isSuccess, error, isFetching } =
+  const params = useParams<{ categoryName: string | "" }>();
+  const { data, isError, isSuccess, isFetching } =
     useGetProductsByCategoryQuery(params?.categoryName);
   return (
     <motion.div
@@ -26,7 +22,7 @@ export default function CategoriesProducts() {
             <span>
               <HugeiconsIcon
                 icon={Store01FreeIcons}
-                className="w-[26px] h-[26px] lg:w-[20px] h-[20px]"
+                className="w-[26px] h-[26px] lg:w-[20px] lg:h-[20px]"
               />
             </span>
             <span className="text-xl font-bold text-nowrap">Product-Store</span>
@@ -52,8 +48,10 @@ export default function CategoriesProducts() {
               </li>
               <li>
                 <Link to={`/category/${params?.categoryName}`}>
-                  {params?.categoryName?.charAt(0).toUpperCase() +
-                    params?.categoryName?.substring(1).toLowerCase()}
+                  {(params?.categoryName ?? "")
+                    ? (params.categoryName![0].toUpperCase() +
+                        params.categoryName!.substring(1).toLowerCase())
+                    : ""}
                 </Link>
               </li>
             </ul>
@@ -72,8 +70,7 @@ export default function CategoriesProducts() {
           role="alert"
           className="alert alert-error alert-soft flex flex-col gap-0 items-start font-bold"
         >
-          <span>{error.status || ""}</span>
-          <span>{error.data.message || ""}</span>
+         Something went wrong
         </div>
       )}
     </motion.div>

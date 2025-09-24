@@ -11,8 +11,6 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import {
-  ArrowLeft01Icon,
-  ArrowRight01Icon,
   FavouriteFreeIcons,
   TruckReturnIcon,
   VanIcon,
@@ -23,8 +21,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import MiniCard from "./Mini-Card";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addToCart } from "@/api/cart";
 import { supabase } from "@/supabase-client";
 export default function ProductDetails() {
   const params = useParams();
@@ -36,7 +32,6 @@ export default function ProductDetails() {
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
   const [userId, setUserId] = useState("");
-  const dispatch = useDispatch();
 
   useEffect(() => {
     setNoOfImg(data?.images.length || 0);
@@ -54,7 +49,7 @@ export default function ProductDetails() {
     });
   }, [api]);
   function HandleCartAdd() {
-    dispatch(addToCart({ user_id: userId, product_id: data?.id, quantity: 1 }));
+    return;
   }
   return (
     <motion.div
@@ -145,8 +140,10 @@ export default function ProductDetails() {
                 to={`/category/${data?.category}`}
                 className="text-primary hover:underline"
               >
-                {data?.category.charAt(0).toUpperCase() +
-                  data?.category.slice(1).toLowerCase()}
+                {data?.category
+                  ? data.category.charAt(0).toUpperCase() +
+                    data.category.slice(1).toLowerCase()
+                  : ""}
               </Link>
             </div>
 
