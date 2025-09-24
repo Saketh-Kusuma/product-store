@@ -4,10 +4,12 @@ import { motion } from "framer-motion";
 import Card from "@/component/Card";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Store01FreeIcons } from "@hugeicons/core-free-icons";
+
 export default function CategoriesProducts() {
-  const params = useParams<{ categoryName: string | "" }>();
+  const params = useParams<{ categoryName: string }>();
   const { data, isError, isSuccess, isFetching } =
-    useGetProductsByCategoryQuery(params?.categoryName);
+    useGetProductsByCategoryQuery(params?.categoryName || "");
+  
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -30,7 +32,7 @@ export default function CategoriesProducts() {
           <span className="loading loading-spinner text-primary"></span>
         </div>
       )}
-      {isSuccess && (
+      {isSuccess && data && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -57,7 +59,7 @@ export default function CategoriesProducts() {
             </ul>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-[20px]">
-            {data?.products?.map((product) => (
+            {data.products?.map((product) => (
               <Link to={`/product-details/${product.id}`} key={product.id}>
                 <Card product={product} />
               </Link>
