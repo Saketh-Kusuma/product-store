@@ -12,6 +12,12 @@ interface Wishlist {
   userId: string;
 }
 
+// Define error type
+interface ApiError {
+  message: string;
+  code?: string;
+}
+
 // Async thunk for adding to cart
 export const addToCart = createAsyncThunk(
   "cart/addToCart",
@@ -33,7 +39,7 @@ export const addToCart = createAsyncThunk(
       if (existingItem) {
         // Update existing item
         const newQuantity = existingItem.quantity + payload.quantity;
-        const { data, error } = await supabase
+        const { error } = await supabase
           .from("cart")
           .update({ quantity: newQuantity })
           .eq("product_id", payload.productId)
@@ -45,7 +51,7 @@ export const addToCart = createAsyncThunk(
         return { ...payload, quantity: newQuantity, isUpdate: true };
       } else {
         // Insert new item
-        const { data, error } = await supabase
+        const { error } = await supabase
           .from("cart")
           .insert({
             product_id: payload.productId,
@@ -59,7 +65,8 @@ export const addToCart = createAsyncThunk(
         return { ...payload, isUpdate: false };
       }
     } catch (error) {
-      return rejectWithValue(error.message);
+      const apiError = error as ApiError;
+      return rejectWithValue(apiError.message || "An error occurred");
     }
   }
 );
@@ -82,7 +89,8 @@ export const fetchCartItems = createAsyncThunk(
         userId: item.user_id,
       }));
     } catch (error) {
-      return rejectWithValue(error.message);
+      const apiError = error as ApiError;
+      return rejectWithValue(apiError.message || "An error occurred");
     }
   }
 );

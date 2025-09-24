@@ -68,19 +68,13 @@ export default function Home() {
   const { data } = useGetProductsQuery("getProducts");
   const { data: categories } = useGetCategoryQuery("getCategory");
   const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
 
   useEffect(() => {
     if (!api) {
       return;
     }
 
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap() + 1);
-
     api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1);
     });
   }, [api]);
   return (
