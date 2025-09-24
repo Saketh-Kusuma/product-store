@@ -4,7 +4,6 @@ import {
   Store01FreeIcons,
   UserAdd01FreeIcons,
   UserCheck01Icon,
-  UserUnlock01FreeIcons,
 } from "@hugeicons/core-free-icons";
 import { useGetCategoryQuery } from "@/api/categories";
 
@@ -61,7 +60,7 @@ export default function Header() {
       }
     });
 
-    supabase.auth.onAuthStateChange((event, session) => {
+    supabase.auth.onAuthStateChange((event) => {
       if (event === "SIGNED_OUT") {
         setUserDetails({
           email: "",
@@ -333,8 +332,7 @@ export default function Header() {
           role="alert"
           className="alert alert-error alert-soft flex flex-col gap-0 items-start font-bold"
         >
-          <span>{error.status || ""}</span>
-          <span>{error.data.message || ""}</span>
+         Something went wrong
         </div>
       )}
     </motion.div>
